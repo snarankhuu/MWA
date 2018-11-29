@@ -5,15 +5,18 @@
     http.createServer((req, res) => {
 
         const fileName = url.parse(req.url, true).query.url;
-        const childProcess = fork('readFile.js')
-        console.log('send file')
-
-        childProcess.send(fileName)
-        childProcess.on('message', rfile => {
-            console.log('readed')
-            console.log(rfile)
-            res.end(rfile)
-        })
+        if (fileName) {
+            const childProcess = fork('readFile.js')
+            console.log('send filename to child process')
+            childProcess.send(fileName)
+            childProcess.on('message', rfile => {
+                console.log('file readed')
+                res.end(rfile)
+                childProcess.kill()
+            })
+        } else {
+            res.end('file name is empty!')
+        }
     }).listen(4000, () => {
         console.log("Server Started!")
     })
