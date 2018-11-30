@@ -6,6 +6,7 @@
         fs.readFile(path.resolve(__dirname + "/" + fileName), 'utf8', (err, rfile) => {
             if (err) console.log(err)
             process.send(rfile)
+            process.exit(1)
         })
 
 

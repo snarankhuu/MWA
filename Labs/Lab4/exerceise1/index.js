@@ -12,12 +12,11 @@
             childProcess.on('message', rfile => {
                 console.log('file readed')
                 res.end(rfile)
-                childProcess.kill()
             })
         } else {
             res.end('file name is empty!')
         }
     }).listen(4000, () => {
-        console.log("Server Started!")
+        console.log("Server Started! http://localhost:4000/?url=big.txt")
     })
 }
