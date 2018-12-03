@@ -20,7 +20,7 @@
 
         }).subscribe(
             x => {
-                res.write(render(x, 'Observable'))
+               return res.write(render(x, 'Observable'))
             },
             e => { console.log(e) },
             () => { console.log('Observable Complete') }
@@ -29,7 +29,7 @@
 
     function getDataPromise(res) {
         axios.get('https://randomuser.me/api/?results=10').then(({ data }) => {
-            res.write(render(data, 'promise'))
+            return res.write(render(data, 'promise'))
         }).catch(err => {
             console.log(err)
         })
@@ -38,7 +38,7 @@
     async function getDataAsync(res) {
         try {
             const { data } = await axios.get('https://randomuser.me/api/?results=10')
-            res.write(render(data, 'async/await'))
+            return res.write(render(data, 'async/await'))
 
         } catch (error) {
             console.log(err)
