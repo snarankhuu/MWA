@@ -84,7 +84,7 @@
                     break
                 case "10":
                     // restaurants.createIndex({ name: "text" }) //  $text: { $search: "Wil" }
-                    restaurants.find({ name: { $regex: /^Wil/ } }).project({ _id: 0, restaurant_id: 1, name: 1, district: 1, cuisine: 1 }).limit(10).toArray((err, docs) => {
+                    restaurants.find({ name: { $regex: "^Wil" } }).project({ _id: 0, restaurant_id: 1, name: 1, district: 1, cuisine: 1 }).limit(10).toArray((err, docs) => {
                         if (err) return console.log(err)
                         console.log(docs)
                         res.status(200).send(docs)
@@ -93,7 +93,7 @@
                     break
                 case "11":
                     // restaurants.createIndex({ name: "text" }) //  $text: { $search: "Wil" }
-                    restaurants.find({ name: { $regex: /ces$/ } }).project({ _id: 0, restaurant_id: 1, name: 1, district: 1, cuisine: 1 }).limit(10).toArray((err, docs) => {
+                    restaurants.find({ name: { $regex: "ces$" } }).project({ _id: 0, restaurant_id: 1, name: 1, district: 1, cuisine: 1 }).limit(10).toArray((err, docs) => {
                         if (err) return console.log(err)
                         console.log(docs)
                         res.status(200).send(docs)
@@ -102,7 +102,7 @@
                     break
                 case "12":
                     // restaurants.createIndex({ name: "text" }) //  $text: { $search: "Wil" }
-                    restaurants.find({ name: { $regex: /Reg/ } }).project({ _id: 0, restaurant_id: 1, name: 1, district: 1, cuisine: 1 }).limit(10).toArray((err, docs) => {
+                    restaurants.find({ name: { $regex: "Reg" } }).project({ _id: 0, restaurant_id: 1, name: 1, district: 1, cuisine: 1 }).limit(10).toArray((err, docs) => {
                         if (err) return console.log(err)
                         console.log(docs)
                         res.status(200).send(docs)
@@ -142,7 +142,7 @@
                     })
                     break
                 case "17":
-                    restaurants.find({ "address.coord": { $elemMatch: { $gt: 42, $lt: 52 } } }).project({ _id: 0, restaurant_id: 1, address: 1 }).limit(10).toArray((err, docs) => {
+                    restaurants.find({ "address.coord.1": { $gt: 42, $lt: 52 }  }).project({ _id: 0, restaurant_id: 1, address: 1 }).limit(10).toArray((err, docs) => {
                         if (err) return console.log(err)
                         console.log(docs)
                         res.status(200).send(docs)
@@ -184,7 +184,7 @@
                     })
                     break
                 case "22":
-                    restaurants.find({ "address.coord": { $exists: true, $size: 2 } }).count((err, docs) => {
+                    restaurants.find({ "address.coord": { $type: "double" } }).count((err, docs) => {
                         if (err) return console.log(err)
                         console.log(docs)
                         res.json(docs)
@@ -192,7 +192,7 @@
                     })
                     break
                 case "23":
-                    restaurants.find({ name: { $regex: /^Mad/ } }).project({ _id: 0, name: 1, district: 1, cuisine: 1, "address.coord": 1}).limit(10).toArray((err, docs) => {
+                    restaurants.find({ name: { $regex: "^Mad" } }).project({ _id: 0, name: 1, district: 1, cuisine: 1, "address.coord": 1}).limit(10).toArray((err, docs) => {
                         if (err) return console.log(err)
                         console.log(docs)
                         res.status(200).send(docs)
