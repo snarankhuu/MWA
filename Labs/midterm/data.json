@@ -1,0 +1,22 @@
+{
+    "_id" : 2,
+    "model" : "Toyota",
+    "status" : 0,
+    "rentalDetails" : [
+            {
+                    "reservation_id" : 1002,
+                    "driverName" : "Mark",
+                    "license" : "AD110",
+                    "startMileage" : 100,
+                    "endMileage" : 150
+            },
+            {
+                    "reservation_id" : 1003,
+                    "driverName" : "Smith",
+                    "license" : "AD111",
+                    "startMileage" : 153,
+                    "endMileage" : 200
+            }
+    ],
+    "ratePerDay" : 55
+}
