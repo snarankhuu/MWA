@@ -1,31 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-counter',
   template: `
     <p>
      <button (click)="decrease()">-</button>
-     <strong>{{counterValue}}</strong>
+     <strong>{{counter}}</strong>
      <button (click)="increase()">+</button>
     </p>
   `,
   styles: []
 })
 export class CounterComponent implements OnInit {
-
-  counterValue: number
-  constructor() { }
-
-  ngOnInit() {
-    this.counterValue = 0
+  @Input() counter: number
+  @Output() counterChange
+  constructor() {
+    this.counterChange = new EventEmitter()
   }
-
+  ngOnInit() { }
   increase() {
-    this.counterValue++
+    this.counter++
+    this.counterChange.emit(this.counter)
     return false
   }
   decrease() {
-    this.counterValue--
+    this.counter--
+    this.counterChange.emit(this.counter)
     return false
   }
 }

@@ -1,7 +1,11 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
-    <app-counter></app-counter>
+    <p> <input [value]="counter" (input)="onCounterChange($event.target.value)" /></p>
+    <app-counter [counter]="counter" (counterChange)="counterChange($event)"></app-counter>
+    <p>
+      Component Counter Value: {{ComponentCounterValue}}
+    </p>
+
   </h1>
 </div>
