@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from 'src/app/data.service';
 
 @Component({
   selector: 'app-user-details',
@@ -23,24 +24,21 @@ import { ActivatedRoute } from '@angular/router';
     City: {{ user.location.city }} State: {{user.location.state}} Street: {{user.location.street}}
    </p>
   `,
-  styles: []
+  styles: [],
+  providers: [DataService]
 })
 export class UserDetailsComponent implements OnInit {
   user: object
   id: string
-  constructor(private route: ActivatedRoute) {
-    route.params.subscribe(params => { this.id = params['id'] })
+  constructor(private route: ActivatedRoute, private data: DataService) {
+    route.params.subscribe(params => {
+      this.id = params['id'];
+      this.user = this.data.getDataById(this.id)
+    })
   }
 
   ngOnInit() {
-    JSON.parse(localStorage.getItem("users")).forEach(e => {
-      console.log(e.login.uuid)
-      if (e.login.uuid == this.id) {
-        this.user = e;
-        console.log(e)
-      }
-    });
-
+    console.log(this.id, this.data.getDataById(this.id))
+    // this.user = this.data.getDataById(this.id)
   }
-
 }

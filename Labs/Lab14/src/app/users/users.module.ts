@@ -3,11 +3,12 @@ import { RouterModule, Routes  } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UsersComponent } from './users/users.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { NotFoundGuard } from './not-found.guard';
 
 const userRoutres: Routes =[{
   path: 'users', component: UsersComponent,
   children: [{
-    path: ':id', component: UserDetailsComponent
+    path: ':id', component: UserDetailsComponent, canActivate: [NotFoundGuard]
   }] 
 
 }]

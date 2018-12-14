@@ -22,7 +22,8 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.data.getData().subscribe(
-      res => { console.log(res); this.users = res.results; localStorage.clear(); localStorage.setItem("users", JSON.stringify(this.users)) },
+      res => { console.log(res); this.users = res['results']; 
+        localStorage.setItem("users", JSON.stringify(this.users)) },
       err => { console.log(err) },
       () => { console.log("Completed") }
     )
